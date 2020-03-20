@@ -7,13 +7,11 @@ const apiRouter = require('./app/routing/apiRoutes');
 const app = express();
 const PORT = process.env.PORT || 8085;
 
-app.use('/', htmlRouter);
 app.use('/api', apiRouter);
+app.use('/', htmlRouter);
 app.use(express.static('public'));
 
-// app.get('/', (req, res) => {
-//   res.send('hi');
-// });
+
 
 app.listen(PORT, () => {
   console.log(`listening on port ${chalk.cyanBright(PORT)}`);
