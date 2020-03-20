@@ -7,6 +7,8 @@ const app = express();
 const PORT = process.env.PORT || 8085;
 
 app.use('/', htmlRouter);
+// app.set(path.join(__dirname, 'public'));
+app.use(express.static('public'));
 
 // app.get('/', (req, res) => {
 //   res.send('hi');

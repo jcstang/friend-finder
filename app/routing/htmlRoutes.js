@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const path = require('path');
 
 // middleware that is specific to this router
 router.use(function timeLog (req, res, next) {
@@ -9,7 +10,9 @@ router.use(function timeLog (req, res, next) {
 
 // define the home page route
 router.get('/', function (req, res) {
-  res.send('home page')
+  // res.send('home page');
+  // res.sendFile(path.join(__dirname, '../public','home.html'));
+  res.sendFile(path.join(__dirname, '../', 'public','home.html'));
 });
 
 // define the about route
