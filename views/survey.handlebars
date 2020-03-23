@@ -1,0 +1,31 @@
+<h1 class="display-4">Survey</h1>
+<p class="lead">Answer the questions, hit submit we will show you friend.</p>
+<hr class="my-4">
+
+<form>
+  <div class="form-group">
+    <label for="friendName">Name</label>
+    <input type="text" class="form-control" id="friendName" placeholder="Barley Lightfoot">
+    <label for="friendImg">Image URL </label>
+    <input type="text" class="form-control" id="friendImg" placeholder="https://i.pravatar.cc/200">
+  </div>
+  {{#each questions}}
+  
+  <h4>Question {{this.number}}</h4>
+  <div class="form-group">
+    <label data-val="{{this.number}}" for="key-q{{this.number}}">{{this.content}}</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+      <option>1 (Strongly Disagree)</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5 (Strongly Agree)</option>
+    </select>
+  </div>
+  {{/each}}
+
+{{!-- submit button --}}
+  <hr class="my-4">
+  <button type="submit" class="btn btn-primary btn-block">Submit</button>
+
+</form>
