@@ -17,7 +17,11 @@ app.use(express.static('public'));
 // });
 
 // TODO: figure out how to compare currentFriend to db of friends.
-
+// TODO: Total friend list api
+// TODO: Build homepage
+// TODO: Build survey page
+// TODO: Pass data from survey to express
+// TODO: Figure out the friend find algorithm
 
 
 
