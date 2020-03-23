@@ -1,0 +1,23 @@
+<form>
+  <div class="form-group">
+    <label for="friendName">Name</label>
+    <input type="text" class="form-control" id="friendName" placeholder="Barley Lightfoot">
+  </div>
+  <!-- list of questions -->
+  {{#each questions}}
+  
+  <h4>Question {{this.number}}</h4>
+  <div class="form-group">
+    <label data-val="{{this.number}}" for="key-q{{this.number}}">{{this.content}}</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+      <option>1 (Strongly Disagree)</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5 (Strongly Agree)</option>
+    </select>
+  </div>
+
+  {{/each}}
+
+</form>
