@@ -12,12 +12,16 @@ app.use('/api', apiRouter);
 app.use('/', htmlRouter);
 app.use(express.static('public'));
 
-friends.forEach(element => {
-  console.log(element.scores);
-});
+// friends.forEach(element => {
+//   console.log(element.scores);
+// });
 
 // TODO: figure out how to compare currentFriend to db of friends.
-
+// TODO: Total friend list api
+// TODO: Build homepage
+// TODO: Build survey page
+// TODO: Pass data from survey to express
+// TODO: Figure out the friend find algorithm
 
 
 

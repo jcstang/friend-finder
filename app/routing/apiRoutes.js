@@ -14,6 +14,8 @@ router.get('/friends', (req, res) => {
 
 router.post('/friends', (req, res) => {
   res.end('posted!!!');
+  // TODO: store friend in db
+  
 });
 
 
