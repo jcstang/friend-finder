@@ -9,7 +9,7 @@ router.use(function timeLog(req, res, next) {
 });
 
 router.get('/friends', (req, res) => {
-  res.sendFile(path.join(__dirname, '../', 'public', 'friend.json'));
+  res.sendFile(path.join(__dirname, '../', 'data', 'friends.json'));
 });
 
 router.post('/friends', (req, res) => {

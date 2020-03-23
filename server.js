@@ -17,6 +17,9 @@ app.use(express.static('public/views'));
 app.engine("handlebars", expressHandlebars({ defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 
+
+// html routes
+// =================================================
 app.get('/', function(req, res) {
   // res.sendFile(path.join(__dirname, '.app', 'public', 'home.html'));
   res.render('home');
