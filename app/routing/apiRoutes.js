@@ -33,7 +33,8 @@ router.use(function timeLog(req, res, next) {
 router.get('/friends', (req, res) => {
   // getFriendsDB();
   // res.sendFile(path.join(__dirname, '../', 'data', 'friends.json'));
-  res.json(getLocalData());
+  // res.json(getLocalData());
+  res.json(friendArrObject);
 });
 
 router.post('/friends', (req, res) => {
@@ -41,14 +42,33 @@ router.post('/friends', (req, res) => {
   
 
   // TODO: push new friend to db
-  console.log(req);
+  // console.log(req);
   
-  console.log("here is req.body");
-  console.log(req.body);
+  // console.log("here is req.body");
+  // console.log(req.body);
   // updateFriendsDB(req.body);
   // updateLocalData(JSON.parse(req.body));
-  updateLocalData(req.body);
-  console.log(friendsArr);
+
+  const scoreArr = req.body.scores.map(function(score) {
+    // console.log('score inside map');
+    // console.log(score);
+    return parseInt(score);
+  });
+
+  // console.log('here is req.body before score change');
+  // console.log(req.body.scores);
+  
+  // score array of ints now added back to the object. 
+  req.body.scores = scoreArr;
+
+  // console.log('here is req.body after score change');
+  // console.log(req.body.scores);
+  
+
+  // updateLocalData(req.body);
+  friendArrObject.push(req.body);
+  // console.log(friendsArr);
+
   
 
   // fileHandler.appendFile(path.join(__dirname, "../", "data", "friends.json"), req.body, function(error) {
@@ -64,6 +84,12 @@ router.post('/friends', (req, res) => {
   res.end('posted!!!');
   
 });
+
+// function convertScoresToInts(arr) {
+//   const scoreArr = arr.map(function(score) {
+//     return parseInt(score);
+//   });
+// }
 
 
 // just JS object
