@@ -4,7 +4,15 @@ const friends = require('../data/friends');
 const router = express.Router();
 const fileHandler = require('fs');
 
-const friendsArr = [
+let friendsArr = [
+  {
+    name: 'billy',
+    photo: 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAq7AAAAJDAwYzI4NTQ4LWYwZWUtNGFkYS1hNTYwLTZjYzkwY2ViZDA3OA.jpg',
+    scores: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  }
+];
+
+let friendArrObject = [
   {
     name: 'billy',
     photo: 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAq7AAAAJDAwYzI4NTQ4LWYwZWUtNGFkYS1hNTYwLTZjYzkwY2ViZDA3OA.jpg',
@@ -23,8 +31,10 @@ router.use(function timeLog(req, res, next) {
 });
 
 router.get('/friends', (req, res) => {
-  getFriendsDB();
-  res.sendFile(path.join(__dirname, '../', 'data', 'friends.json'));
+  // getFriendsDB();
+  // res.sendFile(path.join(__dirname, '../', 'data', 'friends.json'));
+  // res.json(getLocalData());
+  res.json(friendArrObject);
 });
 
 router.post('/friends', (req, res) => {
@@ -32,12 +42,33 @@ router.post('/friends', (req, res) => {
   
 
   // TODO: push new friend to db
+  // console.log(req);
+  
+  // console.log("here is req.body");
+  // console.log(req.body);
+  // updateFriendsDB(req.body);
+  // updateLocalData(JSON.parse(req.body));
 
-  console.log(req.body);
+  const scoreArr = req.body.scores.map(function(score) {
+    // console.log('score inside map');
+    // console.log(score);
+    return parseInt(score);
+  });
 
-  // friendsArr.push(req.body);
-  updateFriendsDB(req.body);
-  console.log(friendsArr);
+  // console.log('here is req.body before score change');
+  // console.log(req.body.scores);
+  
+  // score array of ints now added back to the object. 
+  req.body.scores = scoreArr;
+
+  // console.log('here is req.body after score change');
+  // console.log(req.body.scores);
+  
+
+  // updateLocalData(req.body);
+  friendArrObject.push(req.body);
+  // console.log(friendsArr);
+
   
 
   // fileHandler.appendFile(path.join(__dirname, "../", "data", "friends.json"), req.body, function(error) {
@@ -54,8 +85,30 @@ router.post('/friends', (req, res) => {
   
 });
 
+// function convertScoresToInts(arr) {
+//   const scoreArr = arr.map(function(score) {
+//     return parseInt(score);
+//   });
+// }
+
+
+// just JS object
+// =================================================
+function updateLocalData(value) {
+  friendArrObject.push(value);
+}
+
+function getLocalData() {
+  return friendArrObject;
+}
+
+
+// FS - file handler
+// =================================================
 function updateFriendsDB(value) {
+
   friendsArr.push(value);
+
   fileHandler.writeFile(path.join(__dirname, "../", "data", "friends.json"), JSON.stringify(friendsArr), function(err) {
     if(err) {
       console.log(err);
@@ -67,7 +120,13 @@ function updateFriendsDB(value) {
 
 function getFriendsDB() {
   fileHandler.readFile(path.join(__dirname, "../", "data", "friends.json"), {encoding: 'utf8'}, function(err, data) {
-    friendsArr = data;
+    console.log('here is data, getFriendDB');
+    console.log(data);
+    
+    // FIXME: scores coming in as strings in the friends.json file instead of numbers
+    friendsArr = JSON.parse(data);
+    
+    // friendsArr = data;
   });
 }
 
