@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
   <script src="https://kit.fontawesome.com/d54a006847.js" crossorigin="anonymous"></script>
   <title>Friend Finder | Home</title>
 </head>
+
 <body>
   <div class="container">
     <header>
@@ -17,5 +19,66 @@
     </footer>
   </div>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      console.log('jquery loaded.');
+      const scoreArray = [];
+
+      //$("#survey-form").on("submit" function() {
+        //event.preventDefault();
+
+        //let thing = $('#key-q1').val();
+        //console.log(`here is thing: ${thing}`);
+
+      //});
+
+      $("#survey-form").on("submit", function() {
+        event.preventDefault();
+
+        // let thing = $('#key-q1').val();
+        // console.log(`here is thing: ${thing}`);
+        if(scoreArray.length === 0) {
+          for(let i = 1; i <= 10; i++) {
+            // get just the number like 1. out of string 1 (strongly disagree)
+            let newScore = $(`#key-q${i}`).val().charAt(0);
+            newScore = parseInt(newScore);
+
+            scoreArray.push(newScore);
+          }
+
+        }
+
+        console.log('here is scoreArray');
+        console.log(scoreArray);
+
+        let friendToPost = {
+          name: 'joe',
+          photo: 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAq7AAAAJDAwYzI4NTQ4LWYwZWUtNGFkYS1hNTYwLTZjYzkwY2ViZDA3OA.jpg',
+          scores: scoreArray
+        };
+
+        // TODO: get ALL of the fields and package them into an object
+        // TODO: save that object to file?
+
+        // Send the POST request.
+        $.ajax("/api/friends", {
+          type: "POST",
+          data: friendToPost
+        }).then(
+          function() {
+            console.log('yay the post tihng went down!');
+            
+            // location.reload();
+          }
+        );
+
+      });
+
+
+    });
+
+  </script>
 </body>
+
 </html>

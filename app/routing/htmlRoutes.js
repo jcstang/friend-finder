@@ -12,7 +12,6 @@ router.use(function timeLog (req, res, next) {
   console.log('htmlRoutes Time: ', Date.now())
   next()
 });
-
 // router.engine("handlebars", expressHandlebars({ defaultLayout: "main"}));
 // router.set("view engine", "handlebars");
 

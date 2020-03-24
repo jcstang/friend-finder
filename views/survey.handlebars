@@ -2,7 +2,7 @@
 <p class="lead">Answer the questions, hit submit we will show you friend.</p>
 <hr class="my-4">
 
-<form>
+<form id="survey-form">
   <div class="form-group">
     <label for="friendName">Name</label>
     <input type="text" class="form-control" id="friendName" placeholder="Barley Lightfoot">
@@ -14,7 +14,7 @@
   <h4>Question {{this.number}}</h4>
   <div class="form-group">
     <label data-val="{{this.number}}" for="key-q{{this.number}}">{{this.content}}</label>
-    <select class="form-control" id="exampleFormControlSelect1">
+    <select class="form-control" id="key-q{{this.number}}">
       <option>1 (Strongly Disagree)</option>
       <option>2</option>
       <option>3</option>
