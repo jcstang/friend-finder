@@ -12,6 +12,14 @@ let friendsArr = [
   }
 ];
 
+let friendArrObject = [
+  {
+    name: 'billy',
+    photo: 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAq7AAAAJDAwYzI4NTQ4LWYwZWUtNGFkYS1hNTYwLTZjYzkwY2ViZDA3OA.jpg',
+    scores: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  }
+];
+
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -23,8 +31,9 @@ router.use(function timeLog(req, res, next) {
 });
 
 router.get('/friends', (req, res) => {
-  getFriendsDB();
-  res.sendFile(path.join(__dirname, '../', 'data', 'friends.json'));
+  // getFriendsDB();
+  // res.sendFile(path.join(__dirname, '../', 'data', 'friends.json'));
+  res.json(getLocalData());
 });
 
 router.post('/friends', (req, res) => {
@@ -32,11 +41,13 @@ router.post('/friends', (req, res) => {
   
 
   // TODO: push new friend to db
-
+  console.log(req);
+  
+  console.log("here is req.body");
   console.log(req.body);
-
-  // friendsArr.push(req.body);
-  updateFriendsDB(req.body);
+  // updateFriendsDB(req.body);
+  // updateLocalData(JSON.parse(req.body));
+  updateLocalData(req.body);
   console.log(friendsArr);
   
 
@@ -54,8 +65,24 @@ router.post('/friends', (req, res) => {
   
 });
 
+
+// just JS object
+// =================================================
+function updateLocalData(value) {
+  friendArrObject.push(value);
+}
+
+function getLocalData() {
+  return friendArrObject;
+}
+
+
+// FS - file handler
+// =================================================
 function updateFriendsDB(value) {
+
   friendsArr.push(value);
+
   fileHandler.writeFile(path.join(__dirname, "../", "data", "friends.json"), JSON.stringify(friendsArr), function(err) {
     if(err) {
       console.log(err);
@@ -70,6 +97,8 @@ function getFriendsDB() {
     console.log('here is data, getFriendDB');
     console.log(data);
     
+    // FIXME: scores coming in as strings in the friends.json file instead of numbers
+    friendsArr = JSON.parse(data);
     
     // friendsArr = data;
   });
