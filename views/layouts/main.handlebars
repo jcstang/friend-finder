@@ -52,26 +52,49 @@
         console.log('here is scoreArray');
         console.log(scoreArray);
 
+        //let friendToPost = {
+          //name: 'joe',
+          //photo: 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAq7AAAAJDAwYzI4NTQ4LWYwZWUtNGFkYS1hNTYwLTZjYzkwY2ViZDA3OA.jpg',
+          //scores: scoreArray
+        //};
+
         let friendToPost = {
-          name: 'joe',
-          photo: 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAq7AAAAJDAwYzI4NTQ4LWYwZWUtNGFkYS1hNTYwLTZjYzkwY2ViZDA3OA.jpg',
+          name: $("#friendName").val().trim(),
+          photo: $("#friendImg").val().trim(),
           scores: scoreArray
-        };
+        }
+
+
 
         // TODO: get ALL of the fields and package them into an object
         // TODO: save that object to file?
 
         // Send the POST request.
-        $.ajax("/api/friends", {
-          type: "POST",
-          data: friendToPost
-        }).then(
-          function() {
-            console.log('yay the post tihng went down!');
+        //$.ajax("/api/friends", {
+          //type: "POST",
+          //data: friendToPost
+        //}).then(
+          //function(req, res) {
+            //console.log(res);
+            //console.log('yay the post tihng went down!');
             
-            // location.reload();
+          //  // location.reload();
+          //}
+        //);
+
+        $.ajax({
+          url: '/api/friends',
+          type: "POST",
+          data: friendToPost,
+          success: function( data, status ) {
+            console.log(`status for the post... ${status}`);
+          },
+          error: function( req, status, err ) {
+            //console.log( 'something went wrong', status, err );
+            console.log(`something went wrong... ${status} ${err}`);
           }
-        );
+        });
+
 
       });
 

@@ -4,7 +4,7 @@ const friends = require('../data/friends');
 const router = express.Router();
 const fileHandler = require('fs');
 
-const friendsArr = [
+let friendsArr = [
   {
     name: 'billy',
     photo: 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAq7AAAAJDAwYzI4NTQ4LWYwZWUtNGFkYS1hNTYwLTZjYzkwY2ViZDA3OA.jpg',
@@ -67,7 +67,11 @@ function updateFriendsDB(value) {
 
 function getFriendsDB() {
   fileHandler.readFile(path.join(__dirname, "../", "data", "friends.json"), {encoding: 'utf8'}, function(err, data) {
-    friendsArr = data;
+    console.log('here is data, getFriendDB');
+    console.log(data);
+    
+    
+    // friendsArr = data;
   });
 }
 
