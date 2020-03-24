@@ -23,15 +23,8 @@
   <script type="text/javascript">
     $(document).ready(function() {
       console.log('jquery loaded.');
-      const scoreArray = [];
-
-      //$("#survey-form").on("submit" function() {
-        //event.preventDefault();
-
-        //let thing = $('#key-q1').val();
-        //console.log(`here is thing: ${thing}`);
-
-      //});
+      //const scoreArray = [];
+      const scoreArray = new Array(10);
 
       $("#survey-form").on("submit", function() {
         event.preventDefault();
@@ -47,15 +40,6 @@
           }
 
         }
-
-        //console.log('here is scoreArray');
-        //console.log(scoreArray);
-
-        //let friendToPost = {
-          //name: 'joe',
-          //photo: 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAq7AAAAJDAwYzI4NTQ4LWYwZWUtNGFkYS1hNTYwLTZjYzkwY2ViZDA3OA.jpg',
-          //scores: scoreArray
-        //};
 
         let friendToPost = {
           name: $("#friendName").val().trim(),
