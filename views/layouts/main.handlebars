@@ -29,8 +29,6 @@
       $("#survey-form").on("submit", function() {
         event.preventDefault();
 
-        // let thing = $('#key-q1').val();
-        // console.log(`here is thing: ${thing}`);
         if(scoreArray.length === 0) {
           for(let i = 1; i <= 10; i++) {
             // get just the number like 1. out of string 1 (strongly disagree)
@@ -47,14 +45,6 @@
           scores: scoreArray
         };
 
-        console.log("here is friendToPost, before we ajax");
-        console.log(friendToPost);
-
-
-
-        // TODO: get ALL of the fields and package them into an object
-        // TODO: save that object to file?
-
         // Send the POST request.
         $.ajax("/api/friends", {
           type: "POST",
@@ -67,18 +57,6 @@
             location.reload();
           }
         );
-
-        //$.ajax({'/api/friends',
-          //type: "POST",
-          //data: friendToPost,
-          //success: function( data, status ) {
-            //console.log(`status for the post... ${status}`);
-          //},
-          //error: function( req, status, err ) {
-            ////console.log( 'something went wrong', status, err );
-            //console.log(`something went wrong... ${status} ${err}`);
-          //}
-        //});
 
 
       });
