@@ -23,55 +23,41 @@
   <script type="text/javascript">
     $(document).ready(function() {
       console.log('jquery loaded.');
-      const scoreArray = [];
-
-      //$("#survey-form").on("submit" function() {
-        //event.preventDefault();
-
-        //let thing = $('#key-q1').val();
-        //console.log(`here is thing: ${thing}`);
-
-      //});
+      //const scoreArray = [];
+      const scoreArray = new Array(10);
 
       $("#survey-form").on("submit", function() {
         event.preventDefault();
 
-        // let thing = $('#key-q1').val();
-        // console.log(`here is thing: ${thing}`);
         if(scoreArray.length === 0) {
           for(let i = 1; i <= 10; i++) {
             // get just the number like 1. out of string 1 (strongly disagree)
             let newScore = $(`#key-q${i}`).val().charAt(0);
-            newScore = parseInt(newScore);
 
-            scoreArray.push(newScore);
+            scoreArray.push( parseInt(newScore) );
           }
 
         }
 
-        console.log('here is scoreArray');
-        console.log(scoreArray);
-
         let friendToPost = {
-          name: 'joe',
-          photo: 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAq7AAAAJDAwYzI4NTQ4LWYwZWUtNGFkYS1hNTYwLTZjYzkwY2ViZDA3OA.jpg',
+          name: $("#friendName").val().trim(),
+          photo: $("#friendImg").val().trim(),
           scores: scoreArray
         };
-
-        // TODO: get ALL of the fields and package them into an object
-        // TODO: save that object to file?
 
         // Send the POST request.
         $.ajax("/api/friends", {
           type: "POST",
           data: friendToPost
         }).then(
-          function() {
-            console.log('yay the post tihng went down!');
+          function(req, res) {
+            console.log(res);
+            console.log('yay the post thing just happened!');
             
-            // location.reload();
+            location.reload();
           }
         );
+
 
       });
 
