@@ -22,12 +22,11 @@
   },
   "homepage": "https://github.com/jcstang/friend-finder#readme",
   "dependencies": {
+    "chalk": "^3.0.0",
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
-    "handlebars": "^4.7.3"
-  },
-  "devDependencies": {
-    "chalk": "^3.0.0",
+    "handlebars": "^4.7.3",
     "nodemon": "^2.0.2"
-  }
+  },
+  "devDependencies": {}
 }
