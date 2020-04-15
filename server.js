@@ -6,6 +6,7 @@ const apiRouter = require('./app/routing/apiRoutes');
 //const friends = require('./app/data/friends');
 const expressHandlebars = require('express-handlebars');
 const questions = require('./app/data/questions');
+const helper = require('./helperFunctions');
 
 const app = express();
 const PORT = process.env.PORT || 8085;
@@ -35,6 +36,9 @@ app.get('/survey', function(req, res) {
 // TODO: figure out how to compare currentFriend to db of friends.
 // TODO: Pass data from survey to express
 // TODO: Figure out the friend find algorithm
+
+console.log(helper.compareTwoFriends());
+
 
 
 

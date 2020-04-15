@@ -9,8 +9,8 @@
     <label for="friendImg">Image URL </label>
     <input type="text" class="form-control" id="friendImg" placeholder="https://i.pravatar.cc/200">
   </div>
-  {{#each questions}}
   
+  {{#each questions}}
   <h4>Question {{this.number}}</h4>
   <div class="form-group">
     <label data-val="{{this.number}}" for="key-q{{this.number}}">{{this.content}}</label>
